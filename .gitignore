@@ -1,0 +1,9 @@
+*.pot
+*.db
+*.pyc
+*#
+*~
+src/settings_local.py
+src/static/*
+src/.ropeproject*
+.hg
