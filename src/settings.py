@@ -13,15 +13,24 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+DB_ANGELS = 'angels'
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'ba',                      # Or path to database file if using sqlite3.
-        'USER': 'ba',                      # Not used with sqlite3.
-        'PASSWORD': '111111',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
+    'default': { # DB for Django-specific stuff
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ba',
+        'USER': 'ba',
+        'PASSWORD': '111111',
+        'HOST': '',
+        'PORT': '',
+    },
+    DB_ANGELS: {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ba',
+        'USER': 'ba',
+        'PASSWORD': '111111',
+        'HOST': '',
+        'PORT': '',
+    },
 }
 
 # Local time zone for this installation. Choices can be found here:
@@ -31,7 +40,7 @@ DATABASES = {
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'UTC'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -148,6 +157,10 @@ LOGGING = {
         },
     }
 }
+
+# DATABASE_APPS_MAPPING = {'app1': 'db1', 'app2': 'db2'}
+DATABASE_APPS_MAPPING = {'angels': DB_ANGELS}
+DATABASE_ROUTERS = ['dbrouter.DatabaseAppsRouter']
 
 try:
     from settings_local import *
