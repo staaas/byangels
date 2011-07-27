@@ -65,6 +65,10 @@ class Human(models.Model):
                                   choices=BOOLEAN_CHOICES, default=0)
     new = models.BooleanField(choices=BOOLEAN_CHOICES, default=0)
     detention = models.DateField(null=True, blank=True, verbose_name='Начало срока')
+    # this field has been added latelu
+    # i don't know its meaning yet
+    status = models.IntegerField(default=0)
+
     class Meta:
         db_table = u'people'
         verbose_name = 'Человек'
