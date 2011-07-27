@@ -56,7 +56,7 @@ class Human(models.Model):
     title = models.CharField(max_length=765, verbose_name='Фамилия, имя')
     days = models.CharField(max_length=765, verbose_name='Сколько суток', blank=True)
     place = models.ForeignKey('Place', db_column='place', blank=True, null=True, verbose_name='Где сидит (сидел)')
-    desc = models.TextField(verbose_name='Описание')
+    desc = models.TextField(verbose_name='Описание', default=u'', blank=True)
     ctime = models.DateTimeField(verbose_name='Время создания',
                                  auto_now_add=True)
     mtime = models.DateTimeField(verbose_name='Последнее изменение',
