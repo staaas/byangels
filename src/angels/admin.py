@@ -44,6 +44,7 @@ class HumanChangeList(ChangeList):
 class HumanAdmin(admin.ModelAdmin):
     list_display = ['title', 'status', 'place', 'days', 'detention', 'desc',
                     'helpers_display', 'mtime']
+    list_per_page = 250
     list_display_links = ['title']
     list_filter = ['place', 'status', 'days']
     fields = ['title', 'status', 'place', 'days', 'detention', 'desc', 'new', 'visible',
