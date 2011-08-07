@@ -56,6 +56,7 @@ class Human(models.Model):
     title = models.CharField(max_length=765, verbose_name='Фамилия, имя')
     days = models.CharField(max_length=765, verbose_name='Сколько суток', blank=True)
     place = models.ForeignKey('Place', db_column='place', blank=True, null=True, verbose_name='Где сидит (сидел)')
+    status = models.ForeignKey('Status', db_column='status', blank=False, null=False, verbose_name='Статус', default=0)
     desc = models.TextField(verbose_name='Описание', default=u'', blank=True)
     ctime = models.DateTimeField(verbose_name='Время создания',
                                  auto_now_add=True)
@@ -65,9 +66,6 @@ class Human(models.Model):
                                   choices=BOOLEAN_CHOICES, default=0)
     new = models.BooleanField(choices=BOOLEAN_CHOICES, default=0)
     detention = models.DateField(null=True, blank=True, verbose_name='Начало срока')
-    # this field has been added latelu
-    # i don't know its meaning yet
-    status = models.IntegerField(default=0)
 
     class Meta:
         db_table = u'people'
@@ -84,6 +82,17 @@ class Place(models.Model):
         db_table = u'places'
         verbose_name = 'Место отсидки'
         verbose_name_plural = 'Места отсидки'
+
+    def __unicode__(self):
+        return self.title
+
+class Status(models.Model):
+    id = models.IntegerField(primary_key=True)
+    title = models.CharField(max_length=765)
+    class Meta:
+        db_table = u'status'
+        verbose_name = 'Статус'
+        verbose_name_plural = 'Статусы'
 
     def __unicode__(self):
         return self.title

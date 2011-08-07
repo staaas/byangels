@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.admin.views.main import ChangeList
 from django.utils.safestring import mark_safe
 
-from models import Helper, Message, Human, Place
+from models import Helper, Message, Human, Place, Status
 
 # class ChangeAdmin(admin.ModelAdmin):
 #     pass
@@ -42,11 +42,11 @@ class HumanChangeList(ChangeList):
         return ret
 
 class HumanAdmin(admin.ModelAdmin):
-    list_display = ['title', 'place', 'days', 'detention', 'desc',
+    list_display = ['title', 'status', 'place', 'days', 'detention', 'desc',
                     'helpers_display', 'mtime']
     list_display_links = ['title']
-    list_filter = ['place', 'days']
-    fields = ['title', 'place', 'days', 'detention', 'desc', 'new', 'visible',
+    list_filter = ['place', 'status', 'days']
+    fields = ['title', 'status', 'place', 'days', 'detention', 'desc', 'new', 'visible',
               'ctime', 'mtime']
     readonly_fields = ['id', 'ctime', 'mtime', 'new']
     actions = []
@@ -73,5 +73,7 @@ class PlaceAdmin(admin.ModelAdmin):
     fields = ['title']
 admin.site.register(Place, PlaceAdmin)
 
-
-
+class StatusAdmin(admin.ModelAdmin):
+    list_display = ['title']
+    fields = ['title']
+admin.site.register(Status, StatusAdmin)
